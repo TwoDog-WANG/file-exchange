@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <video src="/onlinePlay/movie" controls width="750" height="800"></video>
+    <div id="ddd">click</div>
+</body>
+<script>
+    let div = document.getElementById('ddd');
+    let chunck;
+    div.addEventListener('click', async () => {
+        let res = await fetch('/onlinePlay/movie');
+        let blob = await res.blob();
+        console.log(blob);
+        const href = window.URL.createObjectURL(blob);
+        const video = document.createElement('video');
+        video.href = blob;
+        video.controls = true;
+        document.body.appendChild(video);
+    })
+</script>
+</html>
